@@ -26,19 +26,19 @@ $user = $table->findById($id);
 </head>
 
 <body class="bg-white">
-	<div class="container mt-5 p-4 rounded border shadow bg-light" style="max-width: 360px">
+	<div class="container mt-5 p-4 rounded border shadow bg-light" style="max-width: 400px">
 		<h1 class="h3 text-center mb-3">Edit Profile</h1>
 		<?php if($user->photo) :?>
 		<img src="../../actions/photos/users/<?= $user->photo ?>"
-			alt="Profile Image" class="img img-thumbnail mb-3" style="max-width: 150px">
+			alt="Profile Image" class="img img-thumbnail mb-2" style="max-width: 150px">
 		<?php else :?>
-		<img src="../../actions/photos/users/profile.jpg" alt="Profile Image" class="img img-thumbnail mb-3"
+		<img src="../../actions/photos/users/profile.jpg" alt="Profile Image" class="img img-thumbnail mb-2"
 			style="max-width: 150px">
 		<?php endif ?>
 		<form
 			action="../../actions/users/upload.php?id=<?= $user->id ?>"
 			method="post" enctype="multipart/form-data">
-			<div class="input-group mb-3">
+			<div class="input-group mb-2">
 				<input type="file" name="photo" class="form-control">
 				<input type="submit" value="Upload" class="btn btn-secondary">
 			</div>
@@ -46,16 +46,16 @@ $user = $table->findById($id);
 		<form
 			action="../../actions/users/edit.php?id=<?= $user->id ?>"
 			method="post">
-			<input type="name" class="form-control mb-3" name="name" placeholder="Name" required
+			<input type="name" class="form-control mb-2" name="name" placeholder="Name" required
 				value="<?= $user->name ?>">
-			<input type="email" class="form-control mb-3" name="email" placeholder="Email" required
+			<input type="email" class="form-control mb-2" name="email" placeholder="Email" required
 				value="<?= $user->email ?>">
-			<input type="phone" class="form-control mb-3" name="phone" placeholder="Phone" required
+			<input type="phone" class="form-control mb-2" name="phone" placeholder="Phone" required
 				value="<?= $user->phone ?>">
-			<input name="address" class="form-control mb-3" required
+			<input name="address" class="form-control mb-2" required
 				value="<?= $user->address ?>">
 			<div class="text-center">
-				<input type="submit" value="Update" class="btn btn-primary mb-3"> <br>
+				<input type="submit" value="Update" class="btn btn-primary mb-2"> <br>
 
 			</div>
 		</form>

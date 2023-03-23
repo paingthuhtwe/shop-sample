@@ -23,7 +23,15 @@ $products = $productsTable->getAll();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home Page</title>
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../css/all.min.css">
 	<link rel="stylesheet" href="../css/custom.css">
+	<style>
+		#cart {
+			bottom: 10%;
+			right: 5%;
+			z-index: 1;
+		}
+	</style>
 </head>
 
 <body>
@@ -93,6 +101,19 @@ $products = $productsTable->getAll();
 				</div>
 				<div class="row p-1">
 					<div class="col-12 col-lg-8">
+						<!-- Order Section Start  -->
+						<div class="position-fixed" id="cart">
+							<div class="alert alert-danger position-relative d-flex align-items-center justify-content-center shadow border border-danger"
+								style="max-width: 50px; max-height: 50px;">
+								<b>
+									Cart
+								</b>
+								<div class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+									0
+								</div>
+							</div>
+						</div>
+						<!-- Order Section End  -->
 						<div class="">
 							<div
 								class="bg-light border rounded p-2 d-flex justify-content-between align-itmes-center mb-2">
@@ -116,8 +137,8 @@ $products = $productsTable->getAll();
 							</div>
 							<div class="row px-1">
 								<?php foreach ($products as $product) :?>
-								<div class="col-12 col-lg-6 p-2">
-									<div class="card border border-success cardSize">
+								<div class="col-12 col-lg-6 p-2 ">
+									<div class="card border border-success cardSize shadow-sm">
 										<?php if($product->photo) :?>
 										<img src="../actions/photos/products/<?= $product->photo ?>"
 											alt="Product Img" class="card-img border rounded shadow-sm">
