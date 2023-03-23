@@ -1,0 +1,19 @@
+{
+    "name": "paingthuhtwe/my-project",
+    "autoload": {
+        "psr-4": {
+            "Paingthuhtwe\\MyProject\\": "src/",
+            "Libs\\": "classes/Libs",
+            "Helpers\\": "classes/Helpers"
+        }
+    },
+    "authors": [
+        {
+            "name": "Paing Thu Htwe",
+            "email": "paingthuhtwe.official@gmail.com"
+        }
+    ],
+    "require": {
+        "fakerphp/faker": "^1.21"
+    }
+}
