@@ -4,6 +4,7 @@ include "../vendor/autoload.php";
 use Libs\Database\MySQL;
 use Libs\Database\UsersTable;
 use Libs\Database\ProductsTable;
+use Libs\Database\CartsTable;
 use Helpers\Auth;
 use Helpers\HTTP;
 
@@ -12,6 +13,12 @@ $table = new UsersTable(new MySQL());
 $users = $table->getAll();
 $productsTable = new ProductsTable(new MySQL());
 $products = $productsTable->getAll();
+$cartsTable = new CartsTable(new MySQL());
+$carts = $cartsTable->findByUserId($auth->id);
+$cartTotal = 0;
+foreach ($carts as $cart) {
+    $cartTotal += $cart->cart;
+}
 ?>
 
 <!DOCTYPE html>
@@ -102,17 +109,20 @@ $products = $productsTable->getAll();
 				<div class="row p-1">
 					<div class="col-12 col-lg-8">
 						<!-- Order Section Start  -->
-						<div class="position-fixed" id="cart">
-							<div class="alert alert-danger position-relative d-flex align-items-center justify-content-center shadow border border-danger"
+						<?php if($cartTotal) :?>
+						<a href="carts/cart.view.php" class="position-fixed dNone" id="cart">
+							<div class="alert alert-info position-relative d-flex align-items-center justify-content-center shadow border border-info"
 								style="max-width: 50px; max-height: 50px;">
 								<b>
 									Cart
 								</b>
-								<div class="badge bg-danger position-absolute top-0 start-100 translate-middle">
-									0
+								<div
+									class="badge bg-info position-absolute top-0 start-100 translate-middle border border-info shadow-sm">
+									<?= $cartTotal ?>
 								</div>
 							</div>
-						</div>
+						</a>
+						<?php endif ?>
 						<!-- Order Section End  -->
 						<div class="">
 							<div
@@ -173,7 +183,8 @@ $products = $productsTable->getAll();
 												</small>
 											</div>
 											<div class="d-flex justify-content-between mt-2">
-												<div class="btn btn-sm btn-success w-100">Add to cart</div>
+												<a href="../actions/carts/add.php?product_id=<?= $product->id ?>"
+													class="btn btn-sm btn-success w-100">Add to cart</a>
 											</div>
 										</div>
 									</div>

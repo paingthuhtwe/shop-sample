@@ -1,3 +1,9 @@
 .dNone {
   text-decoration: none;
 }
+.dDotted {
+  text-decoration: dashed;
+}
+.dDashed {
+  text-decoration: dashed darkblue;
+}
