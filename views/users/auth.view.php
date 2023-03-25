@@ -23,25 +23,27 @@
 <body class="bg-white">
 	<div class="container mt-5 p-4 rounded border shadow bg-light" style="max-width: 540px">
 		<div class="d-flex justify-content-between align-items center">
-			<a href="../home.view.php" class="btn btn-sm btn-outline-primary mb-2">&laquo;&laquo; Home Page</a>
-			<a href="table.view.php" class="btn btn-sm btn-outline-primary mb-2">Manage Users &raquo;&raquo;</a>
+			<a href="../home.view.php" class="btn btn-sm btn-outline-primary mb-2 shadow-sm">&laquo;&laquo; Home
+				Page</a>
+			<a href="table.view.php" class="btn btn-sm btn-outline-primary mb-2 shadow-sm">Manage Users
+				&raquo;&raquo;</a>
 		</div>
 		<?php if($auth->photo) :?>
 		<div class="mb-3">
-			<img class="img img-thumbnail"
+			<img class="img img-thumbnail shadow-sm"
 				src="../../actions/photos/users/<?= $auth->photo ?>"
 				alt="Profile Img" style="max-width: 200px; max-height: 200px;">
 		</div>
 		<?php else :?>
 		<div class="mb-3">
-			<img class="img img-thumbnail" src="../../actions/photos/users/profile.jpg" alt="Profile Img"
+			<img class="img img-thumbnail shadow-sm" src="../../actions/photos/users/profile.jpg" alt="Profile Img"
 				style="max-width: 200px; max-height: 200px;">
 		</div>
 		<?php endif ?>
 
 		<h1 class="h3 mb-3">
-			<?= $auth->name ?>
-			( <?= $auth->role ?> )
+			<?= htmlspecialchars($auth->name) ?>
+			( <?= htmlspecialchars($auth->role) ?> )
 		</h1>
 		<form action="../../actions/users/update.php" method="post" enctype="multipart/form-data">
 			<div class="input-group mb-3">
@@ -51,13 +53,14 @@
 		</form>
 		<ul class="list-group mb-3">
 			<li class="list-group-item list-group-item-action">
-				<b>Email: </b> <?= $auth->email ?>
+				<b>Email: </b> <?= htmlspecialchars($auth->email) ?>
 			</li>
 			<li class="list-group-item list-group-item-action">
-				<b>Phone: </b> <?= $auth->phone ?>
+				<b>Phone: </b> <?= htmlspecialchars($auth->phone) ?>
 			</li>
 			<li class="list-group-item list-group-item-action">
-				<b>Address: </b> <?= $auth->address ?>
+				<b>Address: </b>
+				<?= htmlspecialchars($auth->address) ?>
 			</li>
 		</ul>
 		<a class="btn btn-sm btn-outline-danger" href="../../actions/users/logout.php">Logout</a>

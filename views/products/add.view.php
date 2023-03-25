@@ -1,3 +1,9 @@
+<?php
+    include "../../vendor/autoload.php";
+    use Libs\Helpers\Auth;
+
+    $auth = Auth::check();
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 

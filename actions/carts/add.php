@@ -4,6 +4,7 @@ include "../../vendor/autoload.php";
 
 use Libs\Database\MySQL;
 use Libs\Database\CartsTable;
+use Libs\Database\ProductsTable;
 use Helpers\Auth;
 use Helpers\HTTP;
 
@@ -13,7 +14,13 @@ $user_id = $auth->id;
 $cartsTable = new CartsTable(new MySQL());
 $check = $_GET['cart'];
 
+$productsTable = new ProductsTable(new MySQL());
+$product = $productsTable->findById($product_id);
+
 $cart = $cartsTable->findByUserIdAndProductId($user_id, $product_id);
+
+$product->stock -= 1;
+$productsTable->updateStock($product_id, $product->stock);
 
 if ($cart->product_id == $product_id & $cart->user_id == $user_id) {
     $cart->cart += 1;

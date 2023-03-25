@@ -22,10 +22,21 @@ class CartsTable
             exit();
         }
     }
-    public function getAll($id)
+    public function getAll()
     {
         try {
-            $statement = $this->db->query("SELECT carts.*, carts.id AS cartId, products.*, products.id AS productId FROM carts RIGHT JOIN products ON products.id = carts.product_id AND carts.user_id = $id");
+            $statement = $this->db->query("SELECT carts.*, carts.id AS cartId, products.*, products.id AS productId FROM carts RIGHT JOIN products ON products.id = carts.product_id");
+            return $statement->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit();
+        }
+    }
+    public function getAllByUserId($id)
+    {
+        try {
+            $statement = $this->db->prepare("SELECT carts.*, carts.id AS cartId, products.*, products.id AS productId FROM carts RIGHT JOIN products ON products.id = carts.product_id AND carts.user_id = :id");
+            $statement->execute([':id' => $id]);
             return $statement->fetchAll();
         } catch (PDOException $e) {
             echo $e->getMessage();

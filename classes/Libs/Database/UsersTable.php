@@ -17,6 +17,7 @@ class UsersTable
             $query = "INSERT INTO users (name, email, phone, address, password, role_id, created_at ) VALUES (:name, :email, :phone, :address, :password, :role_id, NOW() )
             ";
             $statement = $this->db->prepare($query);
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
             $statement->execute($data);
             return $this->db->lastInsertId();
         } catch (PDOException $e) {
@@ -26,12 +27,17 @@ class UsersTable
     public function findByEmailAndPassword($email, $password)
     {
         try {
-            $statement = $this->db->prepare("SELECT users.*, roles.role AS role, roles.value FROM users LEFT JOIN roles ON users.role_id = roles.id WHERE users.email = :email AND users.password = :password");
+            $statement = $this->db->prepare("SELECT users.*, roles.role AS role, roles.value FROM users LEFT JOIN roles ON users.role_id = roles.id WHERE users.email = :email");
             $statement->execute([
                 ':email' => $email,
-                ':password' => $password,
             ]);
-            return $statement->fetch() ?? false;
+            $user = $statement->fetch();
+            if ($user) {
+                if (password_verify($password, $user->password)) {
+                    return $user;
+                }
+            }
+            return false;
         } catch (PDOException $e) {
             echo $e->getMessage();
             exit();

@@ -82,4 +82,15 @@ class ProductsTable
             exit();
         }
     }
+    public function updateStock($id, $stock)
+    {
+        try {
+            $statement = $this->db->prepare("UPDATE products SET stock=:stock WHERE id=:id");
+            $statement->execute([':stock' => $stock, ':id' => $id]);
+            return $statement->rowCount();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit();
+        }
+    }
 }

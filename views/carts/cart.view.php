@@ -9,7 +9,7 @@ use Helpers\HTTP;
 
 $auth = Auth::check();
 $cartsTable = new CartsTable(new MySQL());
-$carts = $cartsTable->getAll($auth->id);
+$carts = $cartsTable->getAllByUserId($auth->id);
 $no = null;
 $grandTotal = null;
 
@@ -29,48 +29,52 @@ $grandTotal = null;
 </head>
 
 <body>
-    <div class="container mt-5">
-        <div class="alert alert-success" id="nav">
+    <div class="container mt-3">
+        <div class="alert alert-success border shadow-sm" id="nav">
             <a href="../home.view.php" class="btn btn-sm btn-outline-primary">&laquo;&laquo; Home Page</a>
         </div>
         <div class="row">
+            <!-- Start Cart Section  -->
             <div class="col-12 col-lg-7" id="cart">
                 <div class="row">
                     <?php foreach ($carts as $cart) :?>
                     <?php if($cart->cart) :?>
                     <div class="col-12 col-lg-6">
                         <div
-                            class="alert alert-info p-2 d-flex justify-content-start align-items-center position-relative shadow-sm">
+                            class="alert alert-info p-2 d-flex justify-content-start align-items-center position-relative shadow-sm border">
                             <div class="btn btn-sm btn-success position-absolute top-0 start-0 shadow"
                                 style="min-width: 30px; min-height: 30px">
                                 <?= $cart->cart ?>
                             </div>
                             <div class="position-absolute top-0 end-0">
-                                <a href="../../actions/carts/add.php?product_id=<?= $cart->productId ?>&cart=true"
+                                <a href="../../actions/carts/add.php?product_id=<?= htmlspecialchars($cart->productId) ?>&cart=true"
                                     class="btn btn-sm btn-secondary px-2 py-0 shadow"
                                     style="min-width: 30px; min-height: 30px">
                                     <h5 class="p-0 m-0">+</h5>
                                 </a>
-                                <a href="../../actions/carts/reduce.php?product_id=<?= $cart->productId ?>&cart=true"
+                                <a href="../../actions/carts/reduce.php?product_id=<?= htmlspecialchars($cart->productId) ?>&cart=true"
                                     class="btn btn-sm btn-secondary px-2 py-0 shadow"
                                     style="min-width: 30px; min-height: 30px">
                                     <h5 class="p-0 m-0">-</h5>
                                 </a>
                             </div>
-                            <img src="../../actions/photos/products/<?= $cart->photo ?>"
+                            <img src="../../actions/photos/products/<?= htmlspecialchars($cart->photo) ?>"
                                 alt="Product Img" class="img-thumbnail me-3" style="max-width: 100px">
                             <div>
-                                <b><?= $cart->title ?></b>
+                                <b><?= htmlspecialchars($cart->title) ?></b>
                                 <br>
                                 <small>
                                     <b>
-                                        ( <?= $cart->price ?> *
-                                        <?= $cart->cart ?> ) Ks
+                                        (
+                                        <?= htmlspecialchars($cart->price) ?>
+                                        *
+                                        <?= htmlspecialchars($cart->cart) ?>
+                                        ) Ks
                                     </b>
                                 </small>
                                 <br>
                                 <b class="text-danger">Total :
-                                    <?= $cart->price*$cart->cart ?>
+                                    <?= htmlspecialchars($cart->price*$cart->cart) ?>
                                     Ks</b>
                             </div>
                         </div>
@@ -79,20 +83,22 @@ $grandTotal = null;
                     <?php endforeach ?>
                 </div>
             </div>
+            <!-- End Cart Section  -->
+            <!-- Start Received Section  -->
             <div class="col-12 col-lg-5">
-                <div class="alert alert-warning shadow-sm position-relative" id="printArea">
+                <div class="alert alert-warning shadow-sm position-relative border" id="printArea">
                     <div class="position-absolute top-0 end-0">
                         <div class="btn btn-secondary shadow" onClick="printForm()" id="printBtn">Print</div>
                     </div>
                     <h1 class="h5 text-center border-bottom border-2 border-warning py-3">Your Received <span
                             id="preview">( Preview )</span></h1>
-                    <h1 class="h6 d-flex justify-content-between py-2">
-                        <span class="">
+                    <h1 class="h6 d-flex justify-content-between py-2 flex-column flex-md-row">
+                        <span class="py-1">
                             Customer Name :
                             <span
-                                class="border-bottom border-dark border-2"><?= $auth->name ?></span>
+                                class="border-bottom border-dark border-2"><?= htmlspecialchars($auth->name) ?></span>
                         </span>
-                        <span>
+                        <span class="py-1">
                             Date :
                             <?php
                             $day = date("D-M-Y");
@@ -119,12 +125,13 @@ echo "$day";
                             <td class="text-center">
                                 <?= $cart->cart ?>
                             </td>
-                            <td class="text-end"><?= $cart->price ?>
+                            <td class="text-end">
+                                <?= htmlspecialchars($cart->price) ?>
                             </td>
                             <td class="text-end">
                                 <?php $total = $cart->cart * $cart->price;
                             $grandTotal += $total;
-                            echo $total;
+                            echo htmlspecialchars($total);
                             ?>
                             </td>
                         </tr>
@@ -143,6 +150,7 @@ echo "$day";
                     <h1 class="h5 text-center pt-2 pb-0">Thanks For Your Choice!</h1>
                 </div>
             </div>
+            <!-- End Received Section  -->
         </div>
     </div>
     <script>
@@ -153,19 +161,20 @@ echo "$day";
             var cart = document.getElementById("cart");
             var printBtn = document.getElementById("printBtn");
             var preview = document.getElementById("preview");
+            // Hide Unselected Area 
             nav.classList.add("d-none");
             cart.classList.add("d-none");
             printBtn.classList.add("d-none");
             preview.classList.add("d-none");
+            // Print Received 
             window.print();
+            // Show Unselected Area 
             nav.classList.remove("d-none");
             cart.classList.remove("d-none");
             printBtn.classList.remove("d-none");
             preview.classList.remove("d-none");
         }
     </script>
-
-
 </body>
 
 </html>

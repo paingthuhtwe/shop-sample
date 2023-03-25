@@ -47,13 +47,13 @@ $user = $table->findById($id);
 			action="../../actions/users/edit.php?id=<?= $user->id ?>"
 			method="post">
 			<input type="name" class="form-control mb-2" name="name" placeholder="Name" required
-				value="<?= $user->name ?>">
+				value="<?= htmlspecialchars($user->name) ?>">
 			<input type="email" class="form-control mb-2" name="email" placeholder="Email" required
-				value="<?= $user->email ?>">
+				value="<?= htmlspecialchars($user->email) ?>">
 			<input type="phone" class="form-control mb-2" name="phone" placeholder="Phone" required
-				value="<?= $user->phone ?>">
+				value="<?= htmlspecialchars($user->phone) ?>">
 			<input name="address" class="form-control mb-2" required
-				value="<?= $user->address ?>">
+				value="<?= htmlspecialchars($user->address) ?>">
 			<div class="text-center">
 				<input type="submit" value="Update" class="btn btn-primary mb-2"> <br>
 

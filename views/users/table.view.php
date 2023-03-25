@@ -23,30 +23,32 @@
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
 </head>
 
-<body>
-	<div class="container mt-5">
+<body class="bg-light">
+	<div class="container-fluid mt-3">
 		<div class="d-flex justify-content-between align-items-center bg-light border py-2 px-2">
 			<a href="../home.view.php" class="btn btn-sm btn-outline-primary mb-2"
 				style="min-width: 200px">&laquo;&laquo; Home Page</a>
 			<h1 class="h4 p-0 m-0">
 
-				<span class="text-primary"><?= $auth->name ?></span>
+				<span
+					class="text-primary"><?= htmlspecialchars($auth->name) ?></span>
 				-
-				<span class="text-primary"><?= $auth->role ?></span>
+				<span
+					class="text-primary"><?= htmlspecialchars($auth->role) ?></span>
 			</h1>
 			<a href="auth.view.php?id=<?= $auth->id ?>"
 				class="text-end" style="min-width: 200px">
 				<?php if($auth->photo) :?>
-				<img class="rounded-circle me-2 shadow border"
+				<img class="rounded-circle me-2 shadow-sm border border-3 border-white"
 					src="../../actions/photos/users/<?= $auth->photo ?>"
 					alt="Profile Image" style="max-width:50px">
 				<?php else :?>
-				<img class="rounded-circle me-2 shadow border" src="../../actions/photos/users/profile.jpg"
-					alt="Profile Image" style="max-width:50px">
+				<img class="rounded-circle me-2 shadow-sm border border-3 border-white"
+					src="../../actions/photos/users/profile.jpg" alt="Profile Image" style="max-width:50px">
 				<?php endif ?>
 			</a>
 		</div>
-		<table class="table table-striped border shadow">
+		<table class="table table-striped border shadow-sm">
 			<tr>
 				<th>ID</th>
 				<th>Name</th>
@@ -58,23 +60,23 @@
 			</tr>
 			<?php foreach ($users as $user) :?>
 			<tr>
-				<td> <?= $user->id ?> </td>
-				<td> <?= $user->name ?> </td>
-				<td> <?= $user->email ?> </td>
-				<td> <?= $user->phone ?> </td>
-				<td> <?= $user->address ?> </td>
+				<td> <?= htmlspecialchars($user->id) ?> </td>
+				<td> <?= htmlspecialchars($user->name) ?> </td>
+				<td> <?= htmlspecialchars($user->email) ?> </td>
+				<td> <?= htmlspecialchars($user->phone) ?> </td>
+				<td> <?= htmlspecialchars($user->address) ?> </td>
 				<td>
 					<?php if($user->role_id >= 3) :?>
 					<span class="badge bg-success">
-						<?= $user->role ?>
+						<?= htmlspecialchars($user->role) ?>
 					</span>
 					<?php elseif ($user->role_id >= 2):?>
 					<span class="badge bg-primary">
-						<?= $user->role ?>
+						<?= htmlspecialchars($user->role) ?>
 					</span>
 					<?php else :?>
 					<span class="badge bg-secondary">
-						<?= $user->role ?>
+						<?= htmlspecialchars($user->role) ?>
 					</span>
 					<?php endif ?>
 				</td>

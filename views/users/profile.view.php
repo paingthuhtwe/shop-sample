@@ -26,12 +26,14 @@
 <body class="bg-white">
 	<div class="container mt-5 p-4 rounded border shadow bg-light" style="max-width: 540px">
 		<div class="d-flex justify-content-between align-items center">
-			<a href="../home.view.php" class="btn btn-sm btn-outline-primary mb-2">&laquo;&laquo; Home Page</a>
-			<a href="table.view.php" class="btn btn-sm btn-outline-primary mb-2">Manage Users &raquo;&raquo;</a>
+			<a href="../home.view.php" class="btn btn-sm btn-outline-primary mb-2 shadow-sm">&laquo;&laquo; Home
+				Page</a>
+			<a href="table.view.php" class="btn btn-sm btn-outline-primary mb-2 shadow-sm">Manage Users
+				&raquo;&raquo;</a>
 		</div>
 		<?php if($user->photo) :?>
 		<div class="mb-3">
-			<img class="img img-thumbnail"
+			<img class="img img-thumbnail shadow-sm"
 				src="../../actions/photos/users/<?= $user->photo ?>"
 				alt="Profile Img" style="max-width: 200px; max-height: 200px;">
 		</div>
@@ -43,8 +45,8 @@
 		<?php endif ?>
 
 		<h1 class="h3 mb-3">
-			<?= $user->name ?>
-			( <?= $user->role ?> )
+			<?= htmlspecialchars($user->name) ?>
+			( <?= htmlspecialchars($user->role) ?> )
 		</h1>
 		<?php if($auth->id === $user->id) :?>
 		<form action="../../actions/users/upload.php" method="post" enctype="multipart/form-data">
@@ -56,13 +58,14 @@
 		<?php endif ?>
 		<ul class="list-group mb-3">
 			<li class="list-group-item list-group-item-action">
-				<b>Email: </b> <?= $user->email ?>
+				<b>Email: </b> <?= htmlspecialchars($user->email) ?>
 			</li>
 			<li class="list-group-item list-group-item-action">
-				<b>Phone: </b> <?= $user->phone ?>
+				<b>Phone: </b> <?= htmlspecialchars($user->phone) ?>
 			</li>
 			<li class="list-group-item list-group-item-action">
-				<b>Address: </b> <?= $user->address ?>
+				<b>Address: </b>
+				<?= htmlspecialchars($user->address) ?>
 			</li>
 		</ul>
 		<?php if($auth->id === $user->id) :?>
