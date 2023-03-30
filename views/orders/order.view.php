@@ -30,6 +30,7 @@ $orders = $ordersTable->findByUserId($auth->id);
     <title>Pre Order Form</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/custom.css">
+    <link rel="stylesheet" href="../../fontawesome-free/css/all.min.css">
     <style>
         #preOrder {
             top: -7%;
@@ -41,9 +42,6 @@ $orders = $ordersTable->findByUserId($auth->id);
 
 <body>
     <div class="container mt-3">
-        <div class="alert alert-success shadow-sm" id="nav">
-            <a href="../home.view.php" class="btn btn-sm btn-outline-primary">&laquo;&laquo; Home Page</a>
-        </div>
         <div class="row">
             <div class="col-12 col-lg-6">
                 <?php if($orders) :?>
@@ -138,6 +136,7 @@ $orders = $ordersTable->findByUserId($auth->id);
             </div>
         </div>
     </div>
+    <?php require("../nav.view.php"); ?>
 </body>
 
 </html>

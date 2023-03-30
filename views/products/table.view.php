@@ -23,14 +23,12 @@ $products = $productsTable->getAll();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Manage Users</title>
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../fontawesome-free/css/all.min.css">
 </head>
 
 <body class="bg-light">
 	<div class="container-fluid mt-3">
-		<div class="d-flex justify-content-between align-items-center border py-2 px-2">
-			<a href="../home.view.php" class="btn btn-sm btn-outline-primary mb-2"
-				style="min-width: 150px">&laquo;&laquo; Home
-				Page</a>
+		<div class="d-flex justify-content-between align-items-center border py-3 px-2">
 			<h1 class="h4 p-0 m-0">
 
 				<span
@@ -88,6 +86,7 @@ $products = $productsTable->getAll();
 			<?php endforeach ?>
 		</table>
 	</div>
+	<?php require("../nav.view.php"); ?>
 </body>
 
 </html>

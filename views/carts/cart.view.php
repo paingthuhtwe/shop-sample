@@ -24,18 +24,20 @@ $grandTotal = null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart List</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" media="print">
-    <link rel="stylesheet" href="../../css/custom.css">
+    <link rel="stylesheet" href="../../fontawesome-free/css/all.min.css">
 </head>
 
 <body>
     <div class="container mt-3">
-        <div class="alert alert-success border shadow-sm" id="nav">
-            <a href="../home.view.php" class="btn btn-sm btn-outline-primary">&laquo;&laquo; Home Page</a>
-        </div>
         <div class="row">
             <!-- Start Cart Section  -->
             <div class="col-12 col-lg-7" id="cart">
+                <?php if(isset($_GET['stock'])) :?>
+                <div class="alert alert-danger"><i class="fas fa-warning fa-lg pe-2"></i>Product is out of
+                    stock. Pre
+                    Order For
+                    More!</div>
+                <?php endif ?>
                 <div class="row">
                     <?php foreach ($carts as $cart) :?>
                     <?php if($cart->cart) :?>
@@ -48,7 +50,9 @@ $grandTotal = null;
                             </div>
                             <div class="position-absolute top-0 end-0">
                                 <a href="../../actions/carts/add.php?product_id=<?= htmlspecialchars($cart->productId) ?>&cart=true"
-                                    class="btn btn-sm btn-secondary px-2 py-0 shadow"
+                                    class="btn btn-sm btn-secondary px-2 py-0 shadow <?php if(isset($_GET['stock'])) :?>
+                                    disabled
+                                    <?php endif ?>"
                                     style="min-width: 30px; min-height: 30px">
                                     <h5 class="p-0 m-0">+</h5>
                                 </a>
@@ -90,7 +94,7 @@ $grandTotal = null;
                     <div class="position-absolute top-0 end-0">
                         <div class="btn btn-secondary shadow" onClick="printForm()" id="printBtn">Print</div>
                     </div>
-                    <h1 class="h5 text-center border-bottom border-2 border-warning py-3">Your Received <span
+                    <h1 class="h5 text-center border-bottom border-2 border-warning py-3">Your Receipt <span
                             id="preview">( Preview )</span></h1>
                     <h1 class="h6 d-flex justify-content-between py-2 flex-column flex-md-row">
                         <span class="py-1">
@@ -153,26 +157,27 @@ echo "$day";
             <!-- End Received Section  -->
         </div>
     </div>
+    <?php require("../nav.view.php"); ?>
     <script>
         function printForm() {
             // Get the selected area
             var selectedArea = document.getElementById("printArea");
-            var nav = document.getElementById("nav");
             var cart = document.getElementById("cart");
             var printBtn = document.getElementById("printBtn");
             var preview = document.getElementById("preview");
+            var bNavbar = document.getElementById("bNavbar");
             // Hide Unselected Area 
-            nav.classList.add("d-none");
             cart.classList.add("d-none");
             printBtn.classList.add("d-none");
             preview.classList.add("d-none");
-            // Print Received 
+            bNavbar.classList.add("d-none");
+            // Print Receipt 
             window.print();
             // Show Unselected Area 
-            nav.classList.remove("d-none");
             cart.classList.remove("d-none");
             printBtn.classList.remove("d-none");
             preview.classList.remove("d-none");
+            bNavbar.classList.remove("d-none");
         }
     </script>
 </body>

@@ -1,9 +1,6 @@
+.cursor-pointer {
+  cursor: pointer;
+}
 .dNone {
-  text-decoration: none;
-}
-.dDotted {
-  text-decoration: dashed;
-}
-.dDashed {
-  text-decoration: dashed darkblue;
+  text-decoration: 0 none;
 }

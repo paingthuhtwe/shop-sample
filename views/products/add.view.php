@@ -1,6 +1,6 @@
 <?php
     include "../../vendor/autoload.php";
-    use Libs\Helpers\Auth;
+    use Helpers\Auth;
 
     $auth = Auth::check();
     ?>
@@ -25,7 +25,7 @@
 			<input type="text" name="title" placeholder="Title" class="form-control mb-2" required>
 			<textarea name="description" class="form-control mb-2" placeholder="Description" required></textarea>
 			<input type="number" class="form-control mb-2" name="price" required placeholder="Price (Kyats)">
-			<input type="number" name="stock" class="form-control mb-2" placeholder="Stock">
+			<input type="number" name="stock" class="form-control mb-2" placeholder="Stock" value="0">
 			<input type="submit" value="+ Add Item" class="btn btn-primary"></input>
 		</form>
 	</div>

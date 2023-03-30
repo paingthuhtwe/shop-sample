@@ -21,13 +21,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Manage Users</title>
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../fontawesome-free/css/all.min.css">
+	<style>
+		/* for bottom nav bar  */
+		@media screen and (min-width: 390px) {
+			#bNavbar {
+				left: 42%;
+				bottom: 5%;
+				position: fixed;
+			}
+		}
+
+		@media screen and (max-width: 390px) {
+			#bNavbar {
+				left: 7%;
+				bottom: 5%;
+				position: fixed;
+			}
+		}
+	</style>
 </head>
 
 <body class="bg-light">
 	<div class="container-fluid mt-3">
 		<div class="d-flex justify-content-between align-items-center bg-light border py-2 px-2">
-			<a href="../home.view.php" class="btn btn-sm btn-outline-primary mb-2"
-				style="min-width: 200px">&laquo;&laquo; Home Page</a>
 			<h1 class="h4 p-0 m-0">
 
 				<span
@@ -37,14 +54,16 @@
 					class="text-primary"><?= htmlspecialchars($auth->role) ?></span>
 			</h1>
 			<a href="auth.view.php?id=<?= $auth->id ?>"
-				class="text-end" style="min-width: 200px">
+				class="d-flex justify-content-end">
 				<?php if($auth->photo) :?>
 				<img class="rounded-circle me-2 shadow-sm border border-3 border-white"
 					src="../../actions/photos/users/<?= $auth->photo ?>"
 					alt="Profile Image" style="max-width:50px">
 				<?php else :?>
-				<img class="rounded-circle me-2 shadow-sm border border-3 border-white"
-					src="../../actions/photos/users/profile.jpg" alt="Profile Image" style="max-width:50px">
+				<div class="border rounded-circle border-3 border-white shadow-sm d-flex justify-content-center align-items-center bg-light"
+					style="width: 50px; height: 50px">
+					<i class="fas fa-user fa-lg text-secondary"></i>
+				</div>
 				<?php endif ?>
 			</a>
 		</div>
@@ -132,6 +151,7 @@
 			<?php endforeach ?>
 		</table>
 	</div>
+	<?php require("../nav.view.php"); ?>
 	<script src="../../js/bootstrap.bundle.min.js"></script>
 </body>
 
