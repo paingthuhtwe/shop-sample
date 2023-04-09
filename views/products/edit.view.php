@@ -25,7 +25,7 @@ $product = $productsTable->findById($id);
 </head>
 
 <body>
-	<div class="container mt-5 p-4 bg-light border rounded" style="max-width: 460px">
+	<div class="container mt-md-5 p-4 bg-light border rounded" style="max-width: 460px">
 		<h1 class="h3 py-3 text-center">Edit Item</h1>
 		<?php if($product->photo) :?>
 		<img src="../../actions/photos/products/<?= htmlspecialchars($product->photo) ?>"

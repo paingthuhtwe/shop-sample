@@ -1,15 +1,15 @@
 <?php
-    include "../../vendor/autoload.php";
-    use Helpers\Auth;
-    use Helpers\HTTP;
-    use Libs\Database\MySQL;
-    use Libs\Database\UsersTable;
+include "../../vendor/autoload.php";
+use Helpers\Auth;
+use Helpers\HTTP;
+use Libs\Database\MySQL;
+use Libs\Database\UsersTable;
 
-    $auth = Auth::check();
-    $table = new UsersTable(new MySQL());
-    $id = $_GET['id'];
-    $user = $table->findById($id);
-    ?>
+$auth = Auth::check();
+$table = new UsersTable(new MySQL());
+$id = $_GET['id'];
+$user = $table->findById($id);
+?>
 
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
 </head>
 
 <body class="bg-white">
-	<div class="container mt-5 p-4 rounded border shadow bg-light" style="max-width: 540px">
+	<div class="container mt-md-5 p-4 rounded border shadow bg-light" style="max-width: 540px">
 		<div class="d-flex justify-content-between align-items center">
 			<a href="../home.view.php" class="btn btn-sm btn-outline-primary mb-2 shadow-sm">&laquo;&laquo; Home
 				Page</a>

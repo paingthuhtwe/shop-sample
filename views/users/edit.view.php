@@ -26,7 +26,7 @@ $user = $table->findById($id);
 </head>
 
 <body class="bg-white">
-	<div class="container mt-5 p-4 rounded border shadow bg-light" style="max-width: 400px">
+	<div class="container mt-md-5 p-4 rounded border bg-light" style="max-width: 400px">
 		<h1 class="h3 text-center mb-3">Edit Profile</h1>
 		<?php if($user->photo) :?>
 		<img src="../../actions/photos/users/<?= $user->photo ?>"
@@ -56,7 +56,6 @@ $user = $table->findById($id);
 				value="<?= htmlspecialchars($user->address) ?>">
 			<div class="text-center">
 				<input type="submit" value="Update" class="btn btn-primary mb-2"> <br>
-
 			</div>
 		</form>
 	</div>

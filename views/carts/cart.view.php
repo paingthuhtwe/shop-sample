@@ -44,14 +44,20 @@ $grandTotal = null;
                     <div class="col-12 col-lg-6">
                         <div
                             class="alert alert-info p-2 d-flex justify-content-start align-items-center position-relative shadow-sm border">
-                            <div class="btn btn-sm btn-success position-absolute top-0 start-0 shadow"
-                                style="min-width: 30px; min-height: 30px">
-                                <?= $cart->cart ?>
+                            <div class="position-absolute top-0 start-0 shadow">
+                                <div class="btn btn-sm btn-success" style="min-width: 30px; min-height: 30px">
+                                    <?= $cart->cart ?>
+                                </div>
+                                <?php if($cart->stock <= 0) :?>
+                                <div class="btn btn-sm btn-warning">
+                                    Out of Stock!
+                                </div>
+                                <?php endif ?>
                             </div>
                             <div class="position-absolute top-0 end-0">
                                 <a href="../../actions/carts/add.php?product_id=<?= htmlspecialchars($cart->productId) ?>&cart=true"
-                                    class="btn btn-sm btn-secondary px-2 py-0 shadow <?php if(isset($_GET['stock'])) :?>
-                                    disabled
+                                    class="btn btn-sm btn-secondary px-2 py-0 shadow <?php if($cart->stock <= 0) :?>
+                                        disabled
                                     <?php endif ?>"
                                     style="min-width: 30px; min-height: 30px">
                                     <h5 class="p-0 m-0">+</h5>

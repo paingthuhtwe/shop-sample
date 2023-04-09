@@ -1,15 +1,15 @@
 <?php
-    include "../../vendor/autoload.php";
+include "../../vendor/autoload.php";
 
-    use Libs\Database\MySQL;
-    use Libs\Database\UsersTable;
-    use Helpers\Auth;
-    use Helpers\HTTP;
+use Libs\Database\MySQL;
+use Libs\Database\UsersTable;
+use Helpers\Auth;
+use Helpers\HTTP;
 
-    $auth = Auth::check();
-    $table = new UsersTable(new MySQL());
-    $users = $table->getAll();
-    ?>
+$auth = Auth::check();
+$table = new UsersTable(new MySQL());
+$users = $table->getAll();
+?>
 
 
 <!DOCTYPE html>
@@ -49,7 +49,7 @@
 				<?php endif ?>
 			</a>
 		</div>
-		<table class="table table-striped border shadow-sm">
+		<table class="table table-striped border shadow-sm" style="overflow-x: auto; white-space: nowrap;">
 			<tr>
 				<th>ID</th>
 				<th>Name</th>
@@ -68,7 +68,7 @@
 				<td> <?= htmlspecialchars($user->address) ?> </td>
 				<td>
 					<?php if($user->role_id >= 3) :?>
-					<span class="badge bg-success">
+					<span class=" badge bg-success">
 						<?= htmlspecialchars($user->role) ?>
 					</span>
 					<?php elseif ($user->role_id >= 2):?>

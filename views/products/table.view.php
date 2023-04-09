@@ -41,7 +41,7 @@ $products = $productsTable->getAll();
 				+ Add Item
 			</a>
 		</div>
-		<table class="table table-striped border shadow-sm">
+		<table class="table table-striped border shadow-sm" style="overflow-x: auto; white-space: nowrap;">
 			<tr>
 				<th>ID</th>
 				<th>Title</th>

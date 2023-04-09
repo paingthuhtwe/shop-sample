@@ -1,0 +1,51 @@
+.menu-icon {
+  width: 25px;
+  height: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.menu-icon span {
+  width: 25px;
+  height: 2px;
+  position: absolute;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+.menu-icon span:first-child {
+  background-color: #007bff;
+  transform: translateY(-8px);
+}
+.menu-icon span:last-child {
+  transform: translateY(8px);
+  background-color: #007bff;
+}
+.menu-icon span:nth-child(2) {
+  background-color: #007bff;
+}
+.close span:nth-child(2) {
+  transition: 0.5s;
+  transform: rotate(45deg);
+  background-color: #007bff;
+}
+.close span:first-child {
+  margin-top: 0;
+  transform: rotate(-45deg);
+  background-color: #007bff;
+}
+.close span:last-child {
+  margin-top: 0;
+  transform: rotate(-45deg);
+  background-color: #007bff;
+}
+
+.navbar-toggler {
+  background-color: var(--pdf-slate-200);
+}
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
