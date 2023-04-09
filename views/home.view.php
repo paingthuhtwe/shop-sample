@@ -117,7 +117,8 @@ foreach ($carts as $cart) {
 			<!-- End Profile Section  -->
 			<div class="col-12 col-lg-9">
 				<div class="row">
-					<div class="col-12 pt-1">
+					<div class="col-12 pt-1 position-relative">
+
 						<div class="alert alert-info border rounded p-2 shadow-sm">
 							<div class="d-flex justify-content-between align-items-center">
 								<h1 class="h4 ps-2 py-2 m-0 text-secondary">Welcome,
@@ -226,7 +227,8 @@ foreach ($carts as $cart) {
 							<?php foreach ($users as $user) :?>
 							<?php if($auth->id !== $user->id) :?>
 							<a href="users/profile.view.php?id=<?= htmlspecialchars($user->id) ?>"
-								class="d-flex align-items-center border rounded bg-light mb-1 p-1 dNone shadow-sm">
+								class="d-flex align-items-center border rounded bg-light mb-1 p-1 shadow-sm"
+								style="text-decoration: none;">
 								<?php if(isset($user->photo)) :?>
 								<img src="../actions/photos/users/<?= htmlspecialchars($user->photo) ?>"
 									alt="" class="border rounded-circle border-3 border-white shadow-sm"
@@ -237,7 +239,7 @@ foreach ($carts as $cart) {
 									<i class="fas fa-user fa-lg text-secondary"></i>
 								</div>
 								<?php endif ?>
-								<h1 class="h6 p-0 m-0 ps-2 ">
+								<h1 class="h6 p-0 m-0 ps-2">
 									<?= htmlspecialchars($user->name) ?>
 									<span
 										class="text-danger">(<?= htmlspecialchars($user->role) ?>)</span>

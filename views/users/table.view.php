@@ -22,24 +22,6 @@
 	<title>Manage Users</title>
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../fontawesome-free/css/all.min.css">
-	<style>
-		/* for bottom nav bar  */
-		@media screen and (min-width: 390px) {
-			#bNavbar {
-				left: 42%;
-				bottom: 5%;
-				position: fixed;
-			}
-		}
-
-		@media screen and (max-width: 390px) {
-			#bNavbar {
-				left: 7%;
-				bottom: 5%;
-				position: fixed;
-			}
-		}
-	</style>
 </head>
 
 <body class="bg-light">
