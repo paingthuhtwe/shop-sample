@@ -45,7 +45,8 @@ $grandTotal = null;
                         <div
                             class="alert alert-info p-2 d-flex justify-content-start align-items-center position-relative shadow-sm border">
                             <div class="position-absolute top-0 start-0 shadow">
-                                <div class="btn btn-sm btn-success" style="min-width: 30px; min-height: 30px">
+                                <div class="btn btn-sm btn-success" id="totalCart"
+                                    style="min-width: 30px; min-height: 30px">
                                     <?= $cart->cart ?>
                                 </div>
                                 <?php if($cart->stock <= 0) :?>
@@ -55,14 +56,14 @@ $grandTotal = null;
                                 <?php endif ?>
                             </div>
                             <div class="position-absolute top-0 end-0">
-                                <a href="../../actions/carts/add.php?product_id=<?= htmlspecialchars($cart->productId) ?>&cart=true"
+                                <a href="../../actions/carts/add.php?product_id=<?= $cart->productId ?>&cart=true"
                                     class="btn btn-sm btn-secondary px-2 py-0 shadow <?php if($cart->stock <= 0) :?>
                                         disabled
                                     <?php endif ?>"
                                     style="min-width: 30px; min-height: 30px">
                                     <h5 class="p-0 m-0">+</h5>
                                 </a>
-                                <a href="../../actions/carts/reduce.php?product_id=<?= htmlspecialchars($cart->productId) ?>&cart=true"
+                                <a href="../../actions/carts/reduce.php?product_id=<?= $cart->productId ?>&cart=true"
                                     class="btn btn-sm btn-secondary px-2 py-0 shadow"
                                     style="min-width: 30px; min-height: 30px">
                                     <h5 class="p-0 m-0">-</h5>
@@ -102,7 +103,7 @@ $grandTotal = null;
                     </div>
                     <h1 class="h5 text-center border-bottom border-2 border-warning py-3">Your Receipt <span
                             id="preview">( Preview )</span></h1>
-                    <h1 class="h6 d-flex justify-content-between py-2 flex-column flex-md-row">
+                    <h1 class="h6 d-flex justify-content-between py-2">
                         <span class="py-1">
                             Customer Name :
                             <span
@@ -159,8 +160,27 @@ echo "$day";
                     </small>
                     <h1 class="h5 text-center pt-2 pb-0">Thanks For Your Choice!</h1>
                 </div>
+                <!-- End Received Section  -->
+                <div class="alert alert-info shadow-sm border" id="payment">
+                    <h1 class="h4 text-dark my-3 text-center">Payment Information</h1>
+                    <form action="">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control w-100 mb-3" name="name"
+                            value="<?= $auth->name ?>">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control w-100 mb-3" name="email"
+                            value="<?= $auth->email ?>">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control w-100 mb-3" name="phone"
+                            value="<?= $auth->phone ?>">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control w-100 mb-3" name="address"
+                            value="<?= $auth->address ?>">
+                        <input type="submit" class="btn btn-danger w-100" value="Confirm">
+                    </form>
+                </div>
             </div>
-            <!-- End Received Section  -->
+
         </div>
     </div>
     <?php require("../nav.view.php"); ?>
@@ -172,11 +192,13 @@ echo "$day";
             var printBtn = document.getElementById("printBtn");
             var preview = document.getElementById("preview");
             var bNavbar = document.getElementById("bNavbar");
+            var payment = document.getElementById("payment");
             // Hide Unselected Area 
             cart.classList.add("d-none");
             printBtn.classList.add("d-none");
             preview.classList.add("d-none");
             bNavbar.classList.add("d-none");
+            payment.classList.add("d-none");
             // Print Receipt 
             window.print();
             // Show Unselected Area 
@@ -184,8 +206,38 @@ echo "$day";
             printBtn.classList.remove("d-none");
             preview.classList.remove("d-none");
             bNavbar.classList.remove("d-none");
+            payment.classList.remove("d-none");
         }
     </script>
+    <!-- <script>
+        const totalCart = document.getElementById("totalCart");
+
+        function btnAddCart(id) {
+            var url = "http://localhost/practice/actions/carts/add.php?product_id=";
+            url += id;
+            url += "&cart=true"
+            fetch(url)
+                .then(function(res) {
+                    return res.json();
+                })
+                .then(function(addCart) {
+                    totalCart.innerHTML = addCart.cart;
+                });
+        }
+
+        function btnReduceCart(id) {
+            var url = "http://localhost/practice/actions/carts/reduce.php?product_id=";
+            url += id;
+            url += "&cart=true"
+            fetch(url)
+                .then(function(res) {
+                    return res.json();
+                })
+                .then(function(reduceCart) {
+                    totalCart.innerHTML = reduceCart.cart;
+                });
+        }
+    </script> -->
 </body>
 
 </html>

@@ -142,6 +142,7 @@ foreach ($carts as $cart) {
 										<a class="nav-link" aria-current="page"
 											href="users/auth.view.php?id=<?= $auth->id ?>">Profile</a>
 									</li>
+									<?php if($auth->role_id >= 2) :?>
 									<li class="nav-item">
 										<a class="nav-link" aria-current="page" href="users/table.view.php">Manage
 											Users</a>
@@ -149,6 +150,7 @@ foreach ($carts as $cart) {
 									<li class="nav-item px-lg-2">
 										<a class="nav-link" href="products/table.view.php">Manage Products</a>
 									</li>
+									<?php endif ?>
 									<li class="nav-item">
 										<a class="nav-link" href="carts/cart.view.php">Shopping Cart
 											<div class="badge bg-primary">

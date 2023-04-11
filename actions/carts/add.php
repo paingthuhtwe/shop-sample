@@ -31,8 +31,11 @@ if ($product->stock > 0) {
                 ':user_id' => $user_id,
         ];
         $cartsTable->updateCart($data);
+        // $addCart = $cart->cart;
         if ($check) {
             HTTP::redirect("/views/carts/cart.view.php");
+            // echo json_encode($addCart);
+            // exit;
         }
         HTTP::redirect("/views/home.view.php");
     } else {

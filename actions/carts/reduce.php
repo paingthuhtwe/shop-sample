@@ -31,8 +31,11 @@ if ($cart->product_id == $product_id & $cart->user_id == $user_id) {
             ':user_id' => $user_id,
     ];
     $cartsTable->updateCart($data);
+    // $reduceCart = $cart->cart;
     if ($check) {
         HTTP::redirect("/views/carts/cart.view.php");
+        // echo json_encode($reduceCart);
+        // exit;
     }
     HTTP::redirect("/views/home.view.php");
 }
