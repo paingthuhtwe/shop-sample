@@ -176,6 +176,13 @@ echo "$day";
                         <label for="address">Address</label>
                         <input type="text" class="form-control w-100 mb-3" name="address"
                             value="<?= $auth->address ?>">
+                        <label for="select">Payment Type</label>
+                        <select name="payment" id="select" class="form-select w-100 mb-3">
+                            <option value="kpzpay">KBZ Pay</option>
+                            <option value="wavepay">Wave Pay</option>
+                            <option value="ayapay">Aya Pay</option>
+                            <option value="truemoney">True Money</option>
+                        </select>
                         <input type="submit" class="btn btn-danger w-100" value="Confirm">
                     </form>
                 </div>

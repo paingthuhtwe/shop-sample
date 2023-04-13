@@ -15,5 +15,13 @@
     ],
     "require": {
         "fakerphp/faker": "^1.21"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "require-dev": {
+        "pestphp/pest-plugin-laravel": "^2.0"
     }
 }

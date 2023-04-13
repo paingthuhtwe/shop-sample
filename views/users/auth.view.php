@@ -18,6 +18,7 @@ $auth = Auth::check();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Profile</title>
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../fontawesome-free/css/all.min.css">
 </head>
 
 <body class="bg-white">
@@ -29,15 +30,12 @@ $auth = Auth::check();
 				&raquo;&raquo;</a>
 		</div>
 		<?php if($auth->photo) :?>
-		<div class="mb-3">
-			<img class="img img-thumbnail shadow-sm"
-				src="../../actions/photos/users/<?= $auth->photo ?>"
-				alt="Profile Img" style="max-width: 200px; max-height: 200px;">
-		</div>
+		<img src="../../actions/photos/users/<?= htmlspecialchars($auth->photo) ?>"
+			alt="Profile Image" class="shadow-sm border border-3 border-white mb-3" style="width: 200px; height: 200px">
 		<?php else :?>
-		<div class="mb-3">
-			<img class="img img-thumbnail shadow-sm" src="../../actions/photos/users/profile.jpg" alt="Profile Img"
-				style="max-width: 200px; max-height: 200px;">
+		<div class="border border-3 border-white mb-3 shadow-sm d-flex justify-content-center align-items-center bg-light"
+			style="width: 200px; height: 200px">
+			<i class="fas fa-user fa-5x text-secondary"></i>
 		</div>
 		<?php endif ?>
 
