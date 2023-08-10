@@ -24,6 +24,12 @@ $products = $productsTable->getAll();
 	<title>Manage Users</title>
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../fontawesome-free/css/all.min.css">
+	<style>
+		.table-container {
+			width: 100%;
+			overflow: auto;
+		}
+	</style>
 </head>
 
 <body class="bg-light">
@@ -41,50 +47,54 @@ $products = $productsTable->getAll();
 				+ Add Item
 			</a>
 		</div>
-		<table class="table table-striped border shadow-sm" style="overflow-x: auto; white-space: nowrap;">
-			<tr>
-				<th>ID</th>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Instock</th>
-				<th>Price</th>
-				<th>Actions</th>
-			</tr>
-			<?php foreach ($products as $product) :?>
-			<tr>
-				<td> <?= htmlspecialchars($product->id) ?> </td>
-				<td> <?= htmlspecialchars($product->title) ?> </td>
-				<td> <?= htmlspecialchars($product->description) ?>
-				</td>
-				<td>
-					<?php if($product->stock > 0) :?>
-					<span class="badge bg-success px-3">
-						<?= $product->stock ?>
-						<?php else :?>
-						<span class="badge bg-secondary px-3">
-							0
+		<div class="table-container">
+			<table class="table table-striped border shadow-sm">
+				<tr>
+					<th>ID</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Instock</th>
+					<th>Price</th>
+					<th>Actions</th>
+				</tr>
+				<?php foreach ($products as $product) :?>
+				<tr>
+					<td> <?= htmlspecialchars($product->id) ?> </td>
+					<td> <?= htmlspecialchars($product->title) ?>
+					</td>
+					<td> <?= htmlspecialchars($product->description) ?>
+					</td>
+					<td>
+						<?php if($product->stock > 0) :?>
+						<span class="badge bg-success px-3">
+							<?= $product->stock ?>
+							<?php else :?>
+							<span class="badge bg-secondary px-3">
+								0
+								<?php endif ?>
+							</span>
+					</td>
+					<td> <?= htmlspecialchars($product->price) ?>
+					</td>
+					<td>
+						<div class="btn-group">
+							<?php if($auth->role_id >=3) : ?>
+							<a href="../../actions/products/delete.php?id=<?= htmlspecialchars($product->id) ?>"
+								class="btn btn-sm btn-outline-danger"
+								onClick="return confirm('Are you sure to Delete?')">Delete</a>
 							<?php endif ?>
-						</span>
-				</td>
-				<td> <?= htmlspecialchars($product->price) ?> </td>
-				<td>
-					<div class="btn-group">
-						<?php if($auth->role_id >=3) : ?>
-						<a href="../../actions/products/delete.php?id=<?= htmlspecialchars($product->id) ?>"
-							class="btn btn-sm btn-outline-danger"
-							onClick="return confirm('Are you sure to Delete?')">Delete</a>
-						<?php endif ?>
-						<?php if($auth->role_id >=2) : ?>
-						<a href="edit.view.php?id=<?= htmlspecialchars($product->id) ?>"
-							class="btn btn-sm btn-outline-warning">Edit</a>
-						<?php else : ?>
-						###
-						<?php endif ?>
-					</div>
-				</td>
-			</tr>
-			<?php endforeach ?>
-		</table>
+							<?php if($auth->role_id >=2) : ?>
+							<a href="edit.view.php?id=<?= htmlspecialchars($product->id) ?>"
+								class="btn btn-sm btn-outline-warning">Edit</a>
+							<?php else : ?>
+							###
+							<?php endif ?>
+						</div>
+					</td>
+				</tr>
+				<?php endforeach ?>
+			</table>
+		</div>
 	</div>
 	<?php require("../nav.view.php"); ?>
 </body>

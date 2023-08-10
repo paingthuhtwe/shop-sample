@@ -2,17 +2,19 @@
     /* for bottom nav bar  */
     @media screen and (min-width: 390px) {
         #bNavbar {
-            left: 38%;
-            bottom: 5%;
             position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 
     @media screen and (max-width: 390px) {
         #bNavbar {
-            left: 20%;
-            bottom: 5%;
             position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 </style>

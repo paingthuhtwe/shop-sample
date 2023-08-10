@@ -25,6 +25,12 @@ $grandTotal = null;
     <title>Cart List</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../fontawesome-free/css/all.min.css">
+    <style>
+        .table-container {
+            width: 100%;
+            overflow: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -117,53 +123,56 @@ echo "$day";
 ?>
                         </span>
                     </h1>
-                    <table class="table table-striped table-bordered border-warning m-0">
-                        <tr class="text-center">
-                            <th>Sr.</th>
-                            <th>Name</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                        </tr>
-                        <?php foreach($carts as $cart) :?>
-                        <?php if($cart->cart) :?>
-                        <tr>
-                            <td class="text-center"><?= $no+=1 ?>
-                            </td>
-                            <td class="text-center">
-                                <?= $cart->title ?>
-                            </td>
-                            <td class="text-center">
-                                <?= $cart->cart ?>
-                            </td>
-                            <td class="text-end">
-                                <?= htmlspecialchars($cart->price) ?>
-                            </td>
-                            <td class="text-end">
-                                <?php $total = $cart->cart * $cart->price;
-                            $grandTotal += $total;
-                            echo htmlspecialchars($total);
-                            ?>
-                            </td>
-                        </tr>
-                        <?php endif ?>
-                        <?php endforeach ?>
-                        <tr>
-                            <th colspan="4" class="text-center">Grand Total ( Kyats )</th>
-                            <th class="text-end">
-                                <?= $grandTotal ?>
-                            </th>
-                        </tr>
-                    </table>
+                    <div class="table-container">
+                        <table class="table table-striped table-bordered border-warning m-0">
+                            <tr class="text-center">
+                                <th>Sr.</th>
+                                <th>Name</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                            <?php foreach($carts as $cart) :?>
+                            <?php if($cart->cart) :?>
+                            <tr>
+                                <td class="text-center"><?= $no+=1 ?>
+                                </td>
+                                <td class="text-center">
+                                    <?= $cart->title ?>
+                                </td>
+                                <td class="text-center">
+                                    <?= $cart->cart ?>
+                                </td>
+                                <td class="text-end">
+                                    <?= htmlspecialchars($cart->price) ?>
+                                </td>
+                                <td class="text-end">
+                                    <?php $total = $cart->cart * $cart->price;
+                                $grandTotal += $total;
+                                echo htmlspecialchars($total);
+                                ?>
+                                </td>
+                            </tr>
+                            <?php endif ?>
+                            <?php endforeach ?>
+                            <tr>
+                                <th colspan="4" class="text-center">Grand Total ( Kyats )</th>
+                                <th class="text-end">
+                                    <?= $grandTotal ?>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
                     <small p-0 m-0>
                         For Support : Call ( 09 - 780 909 574 )
                     </small>
                     <h1 class="h5 text-center pt-2 pb-0">Thanks For Your Choice!</h1>
                 </div>
                 <!-- End Received Section  -->
+                <?php if ($grandTotal!==null) :?>
                 <div class="alert alert-info shadow-sm border" id="payment">
                     <h1 class="h4 text-dark my-3 text-center">Payment Information</h1>
-                    <form action="">
+                    <form action="../../actions/carts/confirm.php">
                         <label for="name">Name</label>
                         <input type="text" class="form-control w-100 mb-3" name="name"
                             value="<?= $auth->name ?>">
@@ -186,6 +195,7 @@ echo "$day";
                         <input type="submit" class="btn btn-danger w-100" value="Confirm">
                     </form>
                 </div>
+                <?php endif ?>
             </div>
 
         </div>
